@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="./assets/css/todo-list.css">
+    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+</head>
+<body>
+    <div class="container">
+        <div class="container__heading">
+            <h1>Todo list</h1>
+            <div class="user-account">
+                <img src="./assets/image/userImage.jpg" alt="user">
+                <div class="account-actions">
+                    <div class="user-information">
+                        <img src="./assets/image/userImage.jpg" alt="user-image" class="user-image">
+                        <p class="user-name">Hoàng Trần</p>
+                    </div>
+            
+                    <ul class="options-container">
+                        <li class="option logout-button"><button>Logout</button></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="add-item-container">
+            <input type="text" name="new-todo" class="item-input" placeholder="What do you need to do today?">
+            <button type="button" class="add-item-button">ADD</button>
+        </div>
+
+        <div class="items-container">
+            <ul class="items-list">
+                <li class="item">
+                    <div>
+                        <input type="checkbox" name="item-checkbox" class="item-checkbox" checked="tru">
+                        <p class="item-content">something</p>
+                        <button class="edit-item-button ti-pencil"></button>
+                        <button class="delete-item-button">&times</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+<script src="./assets/js/todo-list.js"></script>
+</body>
+</html>

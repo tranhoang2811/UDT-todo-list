@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="./assets/css/sign-up.css">
+    <link rel="stylesheet" href="./assets/font/themify-icons/themify-icons.css">
+</head>
+<body>
+    <div id="sign-up">
+        <div class="sign-up__heading">
+            <h1>Sign up</h1>
+        </div>
+        <div class="sign-up__description">
+            <div class="fullname-input">
+                <div class="input-container">
+                    <label for="fullname" class="fullname-icon ti-user input-icon"></label>
+                    <input type="text" id="fullname" class="input-information" placeholder="Fullname">
+                </div>
+            </div>
+            
+            <div class="email-input">
+                <div class="input-container">
+                    <label for="email" class="email-icon ti-email input-icon"></label>
+                    <input type="email" id="email" class="input-information" placeholder="Email">
+                </div>
+            </div>
+    
+            <div class="password-input">
+                <div class="input-container">
+                    <label for="password" class="password-icon ti-lock input-icon"></label>
+                    <input type="text" id="password" class="input-information" placeholder="Password">
+                </div>
+            </div>
+
+            <div class="age-and-gender">
+                <div class="gender-input">
+                    <label for="male" class="male-label">Male</label>
+                    <input type="radio" id="male" name="gender">
+                    <label for="female" class="female-label">Female</label>
+                    <input type="radio" id="female" name="gender">
+                </div>
+
+                <div class="age-input">
+                    <label for="age" class="age-Label">Age:</label>
+                    <input type="number" id="age" value="0">
+                </div>
+            </div>
+
+            <div class="submit-information">
+                <input type="submit" value="Sign up">
+            </div>
+            <div class="login-now">
+                <a href="./login-form.html">Login now</a>
+            </div>
+        </div>
+    </div>
+    <script src="./assets/js/sign-up.js"></script>
+</body>
+</html>
