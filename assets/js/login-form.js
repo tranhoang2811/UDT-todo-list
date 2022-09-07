@@ -1,3 +1,5 @@
+const loginForm = document.getElementById('login-form')
+
 // Select email container and item
 const emailContainer = document.querySelector('.email-container'),
     emailInput = document.querySelector('.email-container input')
@@ -14,18 +16,16 @@ loginError.classList.add('login-error')
 const remmerberAccountCheckbox = document.getElementById('remember')
 
 // Set email, password after sign up
-if (sessionStorage.getItem('user') !== null) {
-    const user = JSON.parse(sessionStorage.getItem('user'))
+if (sessionStorage.getItem('currentUserSignUp') !== null) {
+    const user = JSON.parse(sessionStorage.getItem('currentUserSignUp'))
     emailInput.value = user.email
     passwordInput.value = user.password
-} else if (localStorage.getItem('userAccount') !== null){
-    const userAccount = JSON.parse(localStorage.getItem('userAccount'))
-    emailInput.value = userAccount.email
-    passwordInput.value = userAccount.password
-    remmerberAccountCheckbox.checked = true
 }
 
-
+// Direct to todo list if user has logged in
+if (localStorage.getItem('loggedinAccount') !== null) {
+    window.location.assign('././todo-list.html')
+}
 
 // Validate email
 function validateEmail(emailElement) {
@@ -34,6 +34,7 @@ function validateEmail(emailElement) {
         return true
     }
     loginError.innerHTML = 'Invalid Email!'
+    emailContainer.appendChild(loginError)
     return false
 }
 
@@ -44,30 +45,36 @@ function validatePassword(passwordElement) {
         return true
     }
     loginError.innerHTML = 'Invalid Password!'
+    passwordContainer.appendChild(loginError)
     return false
 }
 
+// Validate account
+function validateUserAccount(email, password) {
+    const users = localStorage.getItem('users')
+    if (users === null) {
+        loginError.innerHTML = 'No accounts are registered yet'
+        loginError.style.textAlign = 'center'
+        loginForm.appendChild(loginError)
+        return false
+    }
+    const user = JSON.parse(users).find(user => user.email === email && user.password === password)
+    if (user === undefined) {
+        loginError.innerHTML = 'Account not found'
+        loginError.style.textAlign = 'center'
+        loginForm.appendChild(loginError)
+        return false
+    }
+    if (remmerberAccountCheckbox.checked) {
+        localStorage.setItem('loggedinAccount', JSON.stringify(user))
+    }
+    return true
+}
+
 const loginButton = document.querySelector('.login-button-item')
-loginButton.onclick = function() {  
-    if (!validateEmail(emailInput)) {
-        emailContainer.appendChild(loginError)
-    }
-    else if (!validatePassword(passwordInput)) {
-        passwordContainer.appendChild(loginError)
-    }
-    else {
-        if (remmerberAccountCheckbox.checked) {
-            const userAccount = {
-                email: emailInput.value,
-                password: passwordInput.value
-            }
-            localStorage.setItem('userAccount', JSON.stringify(userAccount))
-        }
-        else {
-            if (localStorage.getItem('userAccount') !== null) {
-                localStorage.removeItem('userAccount')
-            }
-        }
+loginButton.onclick = function() {
+    const loginFormat = validateEmail(emailInput) && validatePassword(passwordInput)
+    if (loginFormat && validateUserAccount(emailInput.value, passwordInput.value)) {
         window.location.assign('././todo-list.html')
     }
 }
@@ -75,5 +82,3 @@ loginButton.onclick = function() {
 // Remove error
 emailInput.onfocus = () => {loginError.remove()}
 passwordInput.onfocus = () => {loginError.remove()}
-
-

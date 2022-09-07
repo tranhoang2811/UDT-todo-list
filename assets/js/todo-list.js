@@ -1,3 +1,9 @@
+// Remember account
+if (localStorage.getItem('loggedinAccount') === null) {
+    alert('No account is logged in')
+    window.location.assign('././login-form.html')
+}
+
 // Get add new todo part
 const newTodoInput = document.querySelector('.item-input'),
     addTodoButton = document.querySelector('.add-item-button')
@@ -31,6 +37,7 @@ addTodoButton.onclick = function () {
 userAvatar.onmouseover = function(event) {
     const logoutButton = event.target.parentElement.querySelector('.account-actions .logout-button')
     logoutButton.onclick = function() {
+        localStorage.removeItem('loggedinAccount')
         window.location.assign('././login-form.html')
     }
 }
@@ -77,4 +84,3 @@ function addDeleteAction(event) {
     event.target.parentElement.parentElement.remove()
 }
 
-// Create user
